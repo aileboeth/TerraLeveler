@@ -32,7 +32,7 @@ TerraLeveler는 Minecraft용 Fabric **클라이언트** 모드입니다. 서바�
 
 ## 다운로드
 
-[Releases](https://github.com/aileboeth-web/TerraLeveler/releases) 페이지에서 받을 수 있습니다. 두 버전의 기능은 같습니다.
+[Releases](https://github.com/aileboeth/TerraLeveler/releases) 페이지에서 받을 수 있습니다. 두 버전의 기능은 같습니다.
 
 | Minecraft | TerraLeveler | 소스 브랜치 |
 |---|---|---|
