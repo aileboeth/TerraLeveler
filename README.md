@@ -1,145 +1,153 @@
 # TerraLeveler
 
-TerraLeveler 是一个 Minecraft Fabric **客户端**模组：控制你自己的玩家，在生存模式下把一片地形平整到指定高度，或者给一个区域补上照明。它只用正常的走路、挖掘、放置和开箱操作，每一步都等服务器确认后才继续，可以随时暂停、恢复和停止。
+**English** | [简体中文](README.zh-CN.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Русский](README.ru.md) | [Português (Brasil)](README.pt-BR.md)
 
-*TerraLeveler is a client-side Fabric mod for Minecraft 26.3 that drives your own player to level terrain to a target height (rectangle or a whole island) and to light up an area with torches. The in-game text is currently Chinese only.*
+TerraLeveler is a client-side Fabric mod for Minecraft. In survival mode it takes control of your own player and levels an area to a target height (a rectangle you select, or a whole island), or lights up an area with torches. It only uses normal walking, mining, placing and container actions, and you can pause, resume or stop it at any time.
 
-## 功能
+> The in-game interface (settings screen and chat messages) is currently available in Chinese only.
 
-**平地机**
+## Features
 
-- 选区：手拿普通苹果，左键设角点一、右键设角点二；或开启“自动识别岛屿范围”，以玩家所在陆地为起点，按周围连续水面识别整座岛（大岛会自动分区施工）。
-- 把目标高度以上的方块挖掉，再在目标高度铺一层泥土 / 草方块地表；不会灌满地下空洞或流体。
-- 自动寻路，必要时搭临时脚手或临时柱子到达高处，施工结束时回收；脚手数量受“脚手预算”限制，并记录在本地账本里，重进游戏后可以接着回收。
-- 处理流体：填掉目标高度以上的水，尽量先找到并堵住选区外流进来的源头。
-- 背包里有水桶时，从高处下来用水桶落地。
-- 遇到箱子、潜影盒、熔炉等方块实体时可以暂停报告（“保护容器和方块实体”）。
+### Terrain leveling
 
-**区域照明**
+- **Selection:** hold a plain apple, left-click the first corner and right-click the opposite corner. Or turn on island auto-detection: starting from the land you stand on, TerraLeveler finds the whole island by the continuous water around it. Large islands are worked on section by section.
+- Removes every block above the target height and lays a single dirt / grass surface at the target height. Caves and fluids below the surface are not filled in.
+- Finds its own paths. When it needs to reach high places it builds temporary scaffolding or pillars and removes them when the job is finished. The number of scaffold blocks is limited by a scaffold budget and recorded in a local ledger, so leftover scaffolding can still be cleaned up after you rejoin the world.
+- Handles fluids: fills water above the target height, and first tries to find and block sources flowing in from outside the selection.
+- Lands with a water bucket when coming down from a height, if you carry one.
+- Protects containers and block entities (on by default): it pauses and reports the position when it reaches a chest, shulker box, furnace or similar block.
 
-- 用苹果选两个角点框出三维区域，在方块光不高于阈值的可放置地面上放火把，火把可从背包里的潜影盒取出。
-- 施工中会反击攻击范围内的敌对生物、自动进食、掉进水或岩浆后自救，血量过低时暂停并在恢复后继续。
+### Area lighting
 
-**通用**
+- Select two corners of a 3D area with the apple. TerraLeveler places torches on every placeable floor whose block light is at or below a threshold (sky light is ignored). Torches can be taken from shulker boxes in your inventory.
 
-- 工具耐久到保护值时换工具，可以从指定名称的“工具盒”潜影盒里取替换工具。
-- 挖到的泥土等材料超过上限时存进背包里的潜影盒，铺地缺土时再取出（通过 QuickShulker 开盒，界面不会弹出）。
-- 自动反击、自动进食、清除挡路的普通动物（宠物、改名或拴住的动物、村民等不会被攻击）。
-- 状态栏显示当前状态和进度百分比；暂停时在聊天栏提示原因，需要处理时有提示音。
-- 可选的诊断日志，遇到问题时方便排查。
+### Both modes
 
-## 支持版本与依赖
+- Switches tools when durability reaches a reserve value, and can optionally take replacement tools from shulker boxes with a chosen name ("tool boxes").
+- When collected materials such as dirt go over a limit, stores the surplus in a shulker box in your inventory and takes it back out when the surface needs more (the box is opened through Quick Shulker, so no screen pops up).
+- Fights back against mobs that attack you, eats automatically, escapes from water or lava, and pauses when health is low, then continues after recovering.
+- Clears ordinary animals that block the way. Villagers, golems, tamed pets and horses, and named or leashed animals are never attacked; it walks around them or waits.
+- Shows the current state and a progress percentage on screen. When it pauses it tells you why in chat, and plays a sound when you need to step in.
+- Optional diagnostic log for troubleshooting.
 
-本分支（`mc-26.3`）面向 Minecraft 26.3；Minecraft 26.1.2 的版本在 `main` 分支。两个版本的功能相同。
+## Downloads
 
-| 项目 | 要求 |
+Builds are on the [Releases](https://github.com/aileboeth-web/TerraLeveler/releases) page. Both versions have the same features.
+
+| Minecraft | TerraLeveler | Source branch |
+|---|---|---|
+| 26.3 | 0.9.25+26.3 | `mc-26.3` |
+| 26.1.2 | 0.9.24 | `main` |
+
+## Requirements
+
+| | Minecraft 26.3 | Minecraft 26.1.2 |
+|---|---|---|
+| Fabric Loader | 0.19.5 or newer | 0.19.3 or newer |
+| Java | 25 or newer | 25 or newer |
+| [Fabric API](https://github.com/FabricMC/fabric) | Required (built against 0.163.0+26.3) | Required (built against 0.154.2+26.1.2) |
+| [MaLiLib](https://github.com/maruohon/malilib) | Required, 0.30.2 or newer (settings screen) | Required, 0.28.6 or newer |
+| [Quick Shulker](https://github.com/MoRanpcy/quickshulker) | Required, 26.3 build (tested with 3.1.1-26.3) | Required, 26.1.2 build |
+| [Mod Menu](https://github.com/TerraformersMC/ModMenu) | Optional, adds a "Config" button to the mod list | Optional |
+
+TerraLeveler itself only needs to be installed on the client. On a multiplayer server, the shulker box features also need Quick Shulker on the server. Without it, surplus materials are dropped, and when dirt runs short TerraLeveler digs dirt above the target height inside the selection instead.
+
+## Installation
+
+1. Install Fabric Loader for your Minecraft version.
+2. Put the TerraLeveler JAR for that version and the required mods from the table above into the `mods` folder of your game directory.
+3. Start the game.
+
+## Usage
+
+### Opening the settings
+
+- Open the MaLiLib configuration menu (MaLiLib's default hotkey is `A + C`) and choose TerraLeveler at the top, or
+- click the "Config" button for TerraLeveler in Mod Menu's mod list.
+
+Choose the work mode (terrain leveling or area lighting) and adjust the options there. Changes are saved immediately.
+
+### Binding hotkeys
+
+TerraLeveler has **no hotkeys bound by default**. Bind them in the settings before first use:
+
+| Hotkey | What it does |
 |---|---|
-| Minecraft | 26.3 |
-| Fabric Loader | 0.19.5 或更高 |
-| Java | 25 或更高 |
-| [Fabric API](https://github.com/FabricMC/fabric) | 必需（开发时使用 0.163.0+26.3） |
-| [MaLiLib](https://github.com/maruohon/malilib) | 必需，0.30.2 或更高（设置界面） |
-| [Quick Shulker](https://github.com/MoRanpcy/quickshulker) | 必需，26.3 版（开发时使用 3.1.1-26.3）（打开工具盒、材料盒、火把盒） |
-| [Mod Menu](https://github.com/TerraformersMC/ModMenu) | 可选，在模组列表里提供“配置”按钮（开发时使用 21.0.0） |
+| Start / stop | Starts a job when idle; stops it while running or paused |
+| Pause / resume | Pauses or continues the current job |
+| Record target height | Records the height of the full block under your feet as the target ground level (you can also type the Y value in the settings) |
+| Record kept item | Adds the item in your main hand to the custom keep list, or removes it; items on the list are never thrown away |
 
-TerraLeveler 只需要装在客户端。联机时如果要用潜影盒相关功能，服务器也需要安装 QuickShulker；服务器没有时，多余的材料会直接丢弃，缺土时改为挖选区内高于目标高度的土来补充。
+Chat messages show the keys you actually bound.
 
-## 安装
+### Leveling a rectangle
 
-1. 安装 Fabric Loader（Minecraft 26.3）。
-2. 把 TerraLeveler 的 JAR 和上表中的必需前置放进游戏目录的 `mods` 文件夹。
-3. 启动游戏。
+1. Choose the terrain leveling mode in the settings.
+2. Stand at the ground height you want and press "Record target height", or type the target Y in the settings.
+3. Hold a plain apple in your main hand, left-click one corner and right-click the opposite corner.
+4. Press "Start / stop".
 
-## 使用
+### Leveling a whole island
 
-### 打开设置
+1. Turn on island auto-detection in the settings, and adjust the related options as needed (shoreline margin, whether to level inland ponds, and so on).
+2. Record the target height, stand on the island and press "Start / stop". The first press shows a preview of the detected island; press again to confirm and start.
 
-- 打开 malilib 的配置菜单（malilib 默认快捷键 `A + C`），在顶部选择 TerraLeveler；
-- 或者在 Mod Menu 的模组列表里点 TerraLeveler 的“配置”按钮。
+While island mode is on, apple corners are ignored and the detected island is used instead.
 
-在设置里选择工作模式（平地机 / 区域照明），调整各项参数。改动会立即保存。
+### Lighting an area
 
-### 绑定快捷键
+1. Choose the area lighting mode in the settings.
+2. Set the two corners of the 3D area with the apple (left and right click), then press "Start / stop".
 
-TerraLeveler 的快捷键**默认全部不绑定**，第一次使用前请在设置里绑定：
+### File locations
 
-| 快捷键 | 作用 |
-|---|---|
-| 开始 / 停止施工 | 空闲时开始，施工中或暂停中停止 |
-| 暂停 / 恢复 | 暂停或继续当前施工 |
-| 记录平地目标高度 | 把脚下完整方块的高度记为目标地面高度（也可以在设置里直接填写 Y） |
-| 记录保留物品 | 把主手物品加入或移出自定义保留清单，清单里的物品不会被丢弃 |
+All files are inside the game directory (`.minecraft/versions/<version name>/` if your launcher keeps a separate folder per version):
 
-聊天提示里会显示你实际绑定的按键。
+- `config/terraleveler.json`: settings
+- `config/terraleveler-scaffold-ledgers.json`: temporary scaffolding ledger (do not clear it by hand, or leftover scaffolding can no longer be removed automatically)
+- `config/terraleveler-island-survey/`: terrain data recorded during island detection
+- `logs/terraleveler-diagnostic.log`: diagnostic log (turned on and off with the diagnostic log option; its description in the settings shows the full path on your computer)
 
-### 平地（矩形选区）
+When you upgrade from the old name WETA (WorldEater Trench Assistant), the old `weta.json` and related files are copied to the new names on first start. Remove the old `worldeater-trench-assistant-*.jar` from `mods`, or both mods will run at the same time.
 
-1. 设置里选择“平地机”模式。
-2. 站到想要的地面高度上，按“记录平地目标高度”，或在设置里填写目标 Y。
-3. 主手拿普通苹果，左键点一个角，右键点对角，确定矩形选区。
-4. 按“开始 / 停止施工”。
+### Things to know
 
-### 平地（自动识别岛屿）
+- Automatic building turns the camera, moves and breaks blocks very often. Servers with anti-cheat may flag this. Check the server rules first.
+- While a job runs, plain apples are kept for selecting areas and are never eaten.
+- Moving manually during a job counts as taking over, and the job pauses.
 
-1. 在设置里开启“自动识别岛屿范围”，按需要调整岸线保留、是否铺平岛内水塘等选项。
-2. 记录目标高度后站在岛上，按“开始 / 停止施工”：第一次显示识别结果预览，再按一次确认开工。
+## Building from source
 
-开启岛屿模式时苹果选点不起作用，以岛屿范围为准。
-
-### 区域照明
-
-1. 设置里选择“区域照明”模式。
-2. 用苹果左右键设置三维区域的两个角点，按“开始 / 停止施工”。
-
-### 文件位置
-
-以下文件都在游戏目录下（使用启动器的版本隔离时为 `.minecraft/versions/<版本名>/`）：
-
-- `config/terraleveler.json`：设置
-- `config/terraleveler-scaffold-ledgers.json`：临时脚手账本（请勿手动清空，否则遗留的脚手无法自动回收）
-- `config/terraleveler-island-survey/`：岛屿识别时记录的地形数据
-- `logs/terraleveler-diagnostic.log`：诊断日志（可在设置中用“诊断日志”开关；设置里该项的说明会显示本机的完整路径）
-
-从旧名称 WETA（WorldEater Trench Assistant）升级时，旧的 `weta.json` 等文件会在首次启动时自动复制为新名称；请删除 `mods` 里旧的 `worldeater-trench-assistant-*.jar`，否则新旧两个模组会同时运行。
-
-### 注意事项
-
-- 自动施工会频繁转动视角、移动和破坏方块，在开启反作弊的服务器上可能被判定违规。请先确认服务器规则。
-- 施工时普通苹果保留给选区使用，不会被自动吃掉。
-- 施工过程中手动移动会被视为人工接管并暂停。
-
-## 构建
-
-需要 JDK 25。在项目根目录运行：
+You need JDK 25. Check out the branch for your Minecraft version (`main` for 26.1.2, `mc-26.3` for 26.3), then run in the project root:
 
 ```bash
 ./gradlew directTest build -x test
 ```
 
-Windows 下使用 `gradlew.bat directTest build -x test`。生成的模组 JAR 位于 `build/libs/terraleveler-<版本>.jar`（同目录下的 `-sources.jar` 是源码包）。
+On Windows use `gradlew.bat directTest build -x test`. The mod JAR is written to `build/libs/terraleveler-<version>.jar` (the `-sources.jar` next to it contains the source code).
 
-`directTest` 先初始化 Minecraft 的方块和物品注册表，再用 JUnit Platform Console Launcher 运行全部测试。Gradle 标准的 `test` 任务不做这一步，部分测试会因 `Not bootstrapped` 失败，所以构建时用 `-x test` 跳过它。
+`directTest` first initializes Minecraft's block and item registries and then runs all tests with the JUnit Platform Console Launcher. Gradle's standard `test` task skips that step, so some tests fail with `Not bootstrapped`; that is why the build skips it with `-x test`.
 
-项目结构：
+Project layout:
 
 ```text
-src/client/java/      客户端源码（cn.terraleveler）
-src/client/resources/ Mixin 配置
-src/main/resources/   fabric.mod.json 与图标
-src/test/java/        单元测试
-libs/                 编译期依赖（Mod Menu，仅编译使用，不打包进模组）
-tools/Make-Icon.ps1   生成模组图标的 PowerShell 脚本
+src/client/java/      client source code (cn.terraleveler)
+src/client/resources/ Mixin configuration
+src/main/resources/   fabric.mod.json and icon
+src/test/java/        unit tests
+libs/                 compile-only dependency (Mod Menu; not bundled into the mod)
+tools/Make-Icon.ps1   PowerShell script that generates the mod icon
 ```
 
-版本号在 `gradle.properties` 的 `mod_version` 中设置。
+The version number is set by `mod_version` in `gradle.properties`.
 
-## 许可证
+## License
 
-TerraLeveler 以 [MIT 许可证](LICENSE) 发布，Copyright (c) 2026 cys。
+TerraLeveler is released under the [MIT License](LICENSE), Copyright (c) 2026 cys.
 
-第三方组件：
+Third-party components:
 
-- `libs/modmenu-21.0.0.jar` 是 [Mod Menu](https://github.com/TerraformersMC/ModMenu)（TerraformersMC，MIT 许可证，许可证文本包含在该 JAR 内的 `LICENSE_modmenu`），仅用于编译可选的 Mod Menu 集成，不包含在 TerraLeveler 的发布 JAR 中。
-- Fabric API（Apache-2.0）、MaLiLib（LGPLv3）、Quick Shulker（MIT）是运行时前置，由玩家自行安装，不随本项目分发。
+- The Mod Menu JAR in `libs/` (`modmenu-21.0.0.jar` on `mc-26.3`, `modmenu-18.0.0-beta.1.jar` on `main`) is [Mod Menu](https://github.com/TerraformersMC/ModMenu) by TerraformersMC, MIT License (the license text is included in the JAR as `LICENSE_modmenu`). It is only used to compile the optional Mod Menu integration and is not included in the TerraLeveler release JAR.
+- Fabric API (Apache-2.0), MaLiLib (LGPLv3) and Quick Shulker (MIT) are runtime dependencies installed by players themselves; they are not distributed with this project.
 
-更新记录见 [CHANGELOG.md](CHANGELOG.md)。
+See [CHANGELOG.md](CHANGELOG.md) for the version history (written in Chinese).
