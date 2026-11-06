@@ -32,7 +32,7 @@ TerraLeveler es un mod de Fabric para Minecraft que funciona **solo en el client
 
 ## Descargas
 
-Las versiones compiladas están en la página de [Releases](https://github.com/aileboeth-web/TerraLeveler/releases). Ambas versiones tienen las mismas funciones.
+Las versiones compiladas están en la página de [Releases](https://github.com/aileboeth/TerraLeveler/releases). Ambas versiones tienen las mismas funciones.
 
 | Minecraft | TerraLeveler | Rama del código |
 |---|---|---|

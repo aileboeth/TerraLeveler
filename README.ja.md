@@ -32,7 +32,7 @@ TerraLeveler は Minecraft 用の Fabric **クライアント** Mod です。サ
 
 ## ダウンロード
 
-[Releases](https://github.com/aileboeth-web/TerraLeveler/releases) ページからダウンロードできます。両バージョンの機能は同じです。
+[Releases](https://github.com/aileboeth/TerraLeveler/releases) ページからダウンロードできます。両バージョンの機能は同じです。
 
 | Minecraft | TerraLeveler | ソースのブランチ |
 |---|---|---|

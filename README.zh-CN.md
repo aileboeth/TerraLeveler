@@ -32,7 +32,7 @@ TerraLeveler 是一个 Minecraft Fabric **客户端**模组。它在生存模式
 
 ## 下载
 
-在 [Releases](https://github.com/aileboeth-web/TerraLeveler/releases) 页面下载。两个版本功能相同。
+在 [Releases](https://github.com/aileboeth/TerraLeveler/releases) 页面下载。两个版本功能相同。
 
 | Minecraft | TerraLeveler | 源码分支 |
 |---|---|---|

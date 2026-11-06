@@ -32,7 +32,7 @@ TerraLeveler is a client-side Fabric mod for Minecraft. In survival mode it take
 
 ## Downloads
 
-Builds are on the [Releases](https://github.com/aileboeth-web/TerraLeveler/releases) page. Both versions have the same features.
+Builds are on the [Releases](https://github.com/aileboeth/TerraLeveler/releases) page. Both versions have the same features.
 
 | Minecraft | TerraLeveler | Source branch |
 |---|---|---|
